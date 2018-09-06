@@ -1,0 +1,12 @@
+[Unit]
+Description=Yet another awesome service
+After=network.target
+
+[Service]
+User={{linux-user}}
+Group=www-data
+WorkingDirectory=/home/elevential/{{project-name}}/{{repo-name}}
+ExecStart=/home/{{linux-user}}/{{project-name}}/env{{project-name}}/bin/gunicorn --workers 3 --bind unix:/home/elevential/{{project-name}}/{{project-name}}.sock {{django-project-name}}.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
